@@ -1,5 +1,6 @@
 package com.example.teeshirt.sqliteapp;
 
+import android.app.AlertDialog;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.ActionBarActivity;
@@ -16,7 +17,7 @@ public class MainActivity extends ActionBarActivity {
     DatabaseHelper myDb;
 
     EditText etName, etSurname, etMarks;
-    Button btnAdd;
+    Button btnAdd, btnRead;
 
 
     @Override
@@ -29,8 +30,9 @@ public class MainActivity extends ActionBarActivity {
         etSurname = (EditText)findViewById(R.id.etSurname);
         etMarks = (EditText)findViewById(R.id.etMarks);
         btnAdd = (Button)findViewById(R.id.btnAdd);
+        btnRead = (Button)findViewById(R.id.btnRead);
         addData();
-
+        fetchAllRecords();
     }
 
     public void addData(){
@@ -50,7 +52,37 @@ public class MainActivity extends ActionBarActivity {
         );
     }
 
+    public void fetchAllRecords(){
+        btnRead.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                       Cursor records= myDb.getAllRecords();
+                        if (records.getCount()==0){
+                            showMessage("Error","No Records Found");
+                        }
+                        StringBuffer buffer = new StringBuffer();
+                        while (records.moveToNext()){
+                            buffer.append("Id :" +records.getString(0)+"\n");
+                            buffer.append("Name :" +records.getString(1)+"\n");
+                            buffer.append("Surname :" +records.getString(2)+"\n");
+                            buffer.append("Marks :" +records.getString(3)+"\n\n");
+                        }
+                            showMessage("Records", buffer.toString());
+                    }
+                }
+        );
+    }
 
+
+
+    public void showMessage(String title, String message){
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setCancelable(true);
+        builder.setTitle(title);
+        builder.setMessage(message);
+        builder.show();
+    }
 
 
 
