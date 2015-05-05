@@ -2,6 +2,7 @@ package com.example.teeshirt.sqliteapp;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -43,5 +44,11 @@ public class DatabaseHelper extends SQLiteOpenHelper{
             return true;
         }
 
+    }
+
+    public Cursor getAllRecords(){
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor records = db.rawQuery("SELECT * FROM "+ TABLE_NAME, null);
+        return records;
     }
 }
