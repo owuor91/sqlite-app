@@ -18,7 +18,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="25"
                 android:text="Name"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                />
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="25"
                 android:text="Surname"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                />
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -51,13 +51,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="25"
-                android:text="Mark"
-                android:textAppearance="?android:attr/textAppearanceLarge"/>
+                android:text="Marks"
+                />
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="75"
-                android:id="@+id/etMark"
+                android:id="@+id/etMarks"
                 android:inputType="number"/>
         </LinearLayout>
 
@@ -67,6 +67,13 @@
             android:id="@+id/btnAdd"
             android:text="Add Record"
             android:layout_marginTop="25dp"/>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/btnRead"
+            android:layout_marginTop="10dp"
+            android:text="See Records"/>
         </LinearLayout>
 
 </RelativeLayout>
